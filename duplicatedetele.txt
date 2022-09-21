@@ -1,0 +1,6 @@
+;with deleterecord as
+(
+select * from (select row_number() over( partition by ord_id order by ord_id ASC )as XY
+from SS_orders1)X
+)
+delete from deleterecord where XY>1;
