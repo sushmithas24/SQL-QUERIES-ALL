@@ -1,0 +1,22 @@
+create table dlithe.dbo.SS_person
+(
+entryno int primary key,
+name varchar(100) NOT NULL,
+age int check(age>20),
+aadharno varchar(20) unique,
+gender varchar(10) default 'male',
+salary int
+); 
+
+SELECT * FROM SS_person sh WHERE number=1;
+SELECT * FROM SS_person sh WHERE name='manish';
+SELECT *FROM SS_person sh WHERE age>22;
+SELECT *FROM SS_person sh WHERE salary=473892;
+SELECT * FROM SS_person sh WHERE number=1 OR number=3;
+SELECT * FROM SS_person sh WHERE number=3 AND gender='male';
+SELECT * FROM SS_person sh WHERE number BETWEEN 2 AND 4
+SELECT * FROM SS_person sh WHERE name LIKE '%r';
+SELECT * FROM SS_person sh WHERE name NOT LIKE '%a%';
+SELECT * FROM SS_person sh WHERE aadharno  IS NULL;
+SELECT * FROM SS_person sh WHERE aadharno  IS NOT NULL;
+SELECT * FROM SS_person sh WHERE age IN (22,30);
