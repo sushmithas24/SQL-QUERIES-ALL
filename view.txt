@@ -1,0 +1,20 @@
+create view SS_personview 
+as 
+select * from SS_person;
+select * from SS_personview;
+
+--update view 
+update  SS_personview set name='vinay' where number=3;
+select * from SS_personview;
+ 
+--alter view
+alter view SS_personview 
+as select sum(salary) as sumofsalary from SS_person;
+select * from SS_personview;
+
+--alter join
+alter view SS_personview 
+as 
+select per.[number],per.[name],per.[salary],per.[aadharno],per.[gender] from SS_person as per inner join SS_personal as nal
+on per.number=nal.entryno;
+select * from SS_personview;
