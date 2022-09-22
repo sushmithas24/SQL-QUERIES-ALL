@@ -18,3 +18,7 @@ as
 select per.[number],per.[name],per.[salary],per.[aadharno],per.[gender] from SS_person as per inner join SS_personal as nal
 on per.number=nal.entryno;
 select * from SS_personview;
+
+---insert row
+Insert into SS_personview values(5,'raghu',4637829,'46473892020','male');
+Select * from SS_person;
