@@ -1,0 +1,13 @@
+create table dlithe.dbo.SS_employee3
+(
+employee_id int PRIMARY KEY,
+employee_name varchar(100) NOT NULL,
+employee_department int,
+employee_gender varchar(100) default 'not provided',
+employee_age int check (employee_age>=22)
+);
+
+ALTER table SS_employee3 add constraint employee_departments Foreign Key (employee_department)
+references SS_department2(department_id);
+
+drop table SS_employee3;
