@@ -1,0 +1,10 @@
+create table dlithe.dbo.SS_executes
+(
+exe_id int ,
+exe_name varchar(100) ,
+exe_locatn varchar(100),
+exe_sal float
+);
+insert into SS_executes(exe_id,exe_name,exe_locatn,exe_sal) values(1,'varsha','manglalore',12000),(2,'sinchana','bangalore',130000),(3,'ganesh','koppa',140000),(4,'dhanish','belgavi',42000);
+update SS_executes set exe_name='sonu' where exe_sal=12000;
+delete from SS_executes where exe_name='sinchana';
