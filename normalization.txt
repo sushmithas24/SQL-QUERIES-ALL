@@ -1,0 +1,47 @@
+--create table
+create table dlithe.dbo.SS_employee3
+(
+empid int,
+name varchar(100),
+zipcode varchar(100),
+departid int,
+departname varchar(100),
+emp_mob varchar(100)
+);
+
+insert into SS_employee3 values(1,'SUSH','1231',2,'TEST','8373828929'),(2,'THARUN','2342',1,'DB','36738929,378389028'),(3,'YASH','3453',3,'NET','537673829'),(4,'JOHN','4564',1,'TEST','939303028');
+select * from SS_employee3;
+
+--1NF
+TRUNCATE TABLE SS_employee3;
+insert into SS_employee3 values(1,'SUSH','1231',2,'TEST','8373828929'),(2,'THARUN','2342',1,'DB','36738929'),(2,'THARUN','2342',1,'DB','378389028'),(3,'YASH','3453',3,'NET','537673829'),(4,'JOHN','4564',1,'TEST','939303028');
+select * from SS_employee3;
+
+--3NF
+Alter table SS_employee3 drop column departname;
+create table SS_department3
+(
+departid int,
+departname varchar(100)
+);
+insert into SS_department3 values(1,'DB'),(2,'TEST'),(3,'NET');
+select * from SS_department3;
+select * from SS_employee3;
+
+--2NF
+create table SS_location3
+(
+zipcode varchar(100),
+name varchar(100),
+departid int,
+emp_mob varchar(100)
+);
+
+insert into SS_location3(name,zipcode,departid,emp_mob) values('SUSH','1231',2,'8373828929'),
+('THARUN','2342',1,'36738929'),
+('THARUN','2342',1,'378389028'),
+('YASH','3453',3,'537673829'),('JOHN','4564',1,'939303028');
+Alter table SS_employee3 drop column zipcode;
+select * from SS_location3;
+select * from SS_employee3;
+
