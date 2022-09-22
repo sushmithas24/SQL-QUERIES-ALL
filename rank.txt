@@ -1,0 +1,14 @@
+--denserank
+SELECT DENSE_RANK() OVER (   ORDER BY employee_department  ASC) AS
+DRNK,employee_name  ,employee_department 
+FROM SS_employee1 ;
+
+--rank
+SELECT RANK() OVER (   ORDER BY employee_department  ASC) AS
+DRNK,employee_name  ,employee_department 
+FROM SS_employee1 ;
+
+--row number
+SELECT ROW_NUMBER () OVER (   ORDER BY employee_department  ASC) AS
+DRNK,employee_name  ,employee_department 
+FROM SS_employee1 ;
