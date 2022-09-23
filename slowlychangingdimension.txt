@@ -1,0 +1,17 @@
+create table dlithe.dbo.SS_departmenttgt
+(
+department_id int ,
+department_name varchar(100),
+department_head varchar(100)
+);
+select * from SS_departmenttgt;
+
+--type 1
+update SS_department1 set department_head='nusrat' where department_id=2;
+insert into SS_department1 values(4,'hr','naina');
+select * from SS_departmenttgt;
+
+--type 3
+update SS_department1 set department_name='admin' where department_id=1;
+update SS_department1 set department_name='HTML' where department_id=3;
+select * from SS_departmenttgt;
