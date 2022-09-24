@@ -17,5 +17,5 @@ select * from SS_department;
 insert into SS_employee values(10,'suresh',2);
 insert into SS_employee values(23,'pallavi',1);
 insert into SS_employee values(30,'sanvi',1);
-select * from SS_employee;
+select * from SS_employee2;//output
 
