@@ -165,11 +165,10 @@ enddate	datetime,
 status varchar(100)
 );
 
-update task  set productname='gate' where customerid=102;
 
 Select * from target;
 
-update task  set customername='jayanth' where customerid=102;
+update task  set customername='John' where customerid=102;
 update task  set location='Hassan' where customerid=103;
 update task  set productname='gate' where customerid=102;
 
