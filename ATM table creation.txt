@@ -1,0 +1,24 @@
+create table atm (
+months	varchar(100),
+years	varchar(20),
+month_number	int,
+start_date	date,
+end_date	date,
+bank_name	varchar(100),
+no_atms_on_site	 float,
+no_atms_off_site  float,	
+no_pos_on_line float,
+no_pos_off_line	float,
+no_credit_cards	float,
+no_credit_card_atm_txn	float,
+no_credit_card_pos_txn	float,
+no_credit_card_atm_txn_value_in_mn	float,
+no_credit_card_pos_txn_value_in_mn	float,
+no_debit_cards	float,
+no_debit_card_atm_txn	float,
+no_debit_card_pos_txn	float,
+no_debit_card_atm_txn_value_in_mn float,	
+no_debit_card_pos_txn_value_in_mn float
+);
+select * from atm;
+
