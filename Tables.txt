@@ -1,0 +1,155 @@
+create table dlithe.dbo.SS_department
+(
+department_id int PRIMARY KEY,
+department_name varchar(100) NOT NULL UNIQUE,
+department_head varchar(100)
+);
+--------------------------------------------------------------------
+create table dlithe.dbo.SS_employee
+(
+employee_id int PRIMARY KEY,
+employee_name varchar(100) NOT NULL,
+employee_department Int Foreign Key (employee_department) references SS_department(department_id)
+);
+insert into SS_department values(1,'test','manu');
+insert into SS_department values(2,'db','pooja');
+insert into SS_department values(3,'.net','ravindra');
+select * from SS_department;
+insert into SS_employee values(10,'suresh',2);
+insert into SS_employee values(23,'pallavi',1);
+insert into SS_employee values(30,'sanvi',1);
+select * from SS_employee;
+-------------------------------------------------------------------------
+create table dlithe.dbo.SS_person
+(
+entryno int primary key,
+name varchar(100) NOT NULL,
+age int check(age>20),
+aadharno varchar(20) unique,
+gender varchar(10) default 'male',
+salary int
+); 
+insert into SS_person(entryno,name,age,aadharno,salary) values(5,'sharan',26,'46374639022',45367398);
+-----------------------------------------------------------------------------
+create table dlithe.dbo.personjob
+(
+jobid int foreign key (jobid) references SS_person(entryno),
+jobname varchar(20) NOT NULL
+);
+insert into personjob values(3,'manager');
+select * from personjob ;
+update SS_person set name='vikas' where age=26;
+Select * from SS_person ;
+---------------------------------------------------------------------------------
+
+create table SS_flattodb(
+depart_id int,
+depart_name varchar(100),
+depart_head varchar(100)
+
+);
+select * from SS_flattodb ;
+--------------------------------------------------------------------------------------
+
+create table SS_atm (
+months	varchar(100),
+years	varchar(20),
+month_number	int,
+start_date	date,
+end_date	date,
+bank_name	varchar(100),
+no_atms_on_site	 float,
+no_atms_off_site  float,	
+no_pos_on_line float,
+no_pos_off_line	float,
+no_credit_cards	float,
+no_credit_card_atm_txn	float,
+no_credit_card_pos_txn	float,
+no_credit_card_atm_txn_value_in_mn	float,
+no_credit_card_pos_txn_value_in_mn	float,
+no_debit_cards	float,
+no_debit_card_atm_txn	float,
+no_debit_card_pos_txn	float,
+no_debit_card_atm_txn_value_in_mn float,	
+no_debit_card_pos_txn_value_in_mn float
+);
+select * from SS_atm;
+----------------------------------------------------------------------------
+create table ASSIGN
+(
+Years int,
+State	varchar(100),
+HAI varchar(200),	
+Operative_Procedure varchar(500),
+Facility_ID	bigint,
+Facility_Name varchar(200),
+Hospital_Category_RiskAdjustment varchar(200),
+Hospital_Type varchar(200),
+County varchar(100),
+Procedure_Count int,
+Infection_Count int,
+Predicted_Infection_Count float,
+SIR float,
+SIR_CI_95_Lower_Limit float,
+SIR_CI_95_Upper_Limit float,
+Comparison varchar(100),
+SIR_2015 float,
+On_Track_Toward_2020_Goal_2017 varchar(100),
+Notes varchar(200)
+);
+------------------------------------------------------------------------------
+create table dlithe.dbo.SS_executes
+(
+exe_id int ,
+exe_name varchar(100) ,
+exe_locatn varchar(100),
+exe_sal float
+);
+insert into SS_executes(exe_id,exe_name,exe_locatn,exe_sal) values(1,'varsha','manglalore',12000),(2,'sinchana','bangalore',130000),(3,'ganesh','koppa',140000),(4,'dhanish','belgavi',42000);
+update SS_executes set exe_name='sonu' where exe_sal=12000;
+delete from SS_executes where exe_name='sinchana';
+-----------------------------------------------------------------------------------
+create table SS_account
+(
+accno varchar(100),
+name varchar(100),
+bank varchar(100)
+);
+insert into SS_account values('467@46849$74849%','shivu','canara'),('4739%72893&6734','harvi','BOB'),('57849&838@747$','nikil','Axis');
+Select * from SS_account ;
+------------------------------------------------------------------------------------
+create table dlithe.dbo.SS_employe
+(
+empid int,
+name varchar(100),
+zipcode varchar(100)
+
+);
+
+
+create table SS_address1
+(
+zipcode varchar(100),
+country varchar(200),
+city varchar(100)
+);
+insert into SS_employe values(1,'SUSH','1231'),(2,'THARUN','2342'),(3,'YASH','3453'),(4,'JOHN','4564');
+INSERT INTO SS_address1 values('2342','US','CALIFORNIA'),('4564','INDIA','DELHI'),('1231','RUSSIA','TOKYO'),('2342','EUROPE','FINLAND');
+select * from SS_employe;
+select * from SS_address1;
+-----------------------------------------------------------------------------------------
+
+create table task
+(
+customerid	float,
+customername varchar(100),
+location varchar(100),
+productid	varchar(100),
+productname	 varchar(100),
+);
+insert into task(customerid,customername,location,productid,productname) values(100,'Arunagiri','Bangalore','848930A','Cholocates'),
+(101,'Anjali','Belgavi','839127B','Dress'),
+(102,'Neha','Mangalore','473929C','Tv'),
+(103,'Sushmitha','Malnad','837293D','Mobile');
+Select * from task;
+----------------------------------------------------------------------------------------
