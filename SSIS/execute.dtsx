@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/14/2022 11:14:16 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ELW5209"
+  DTS:CreatorName="CORPINDIA\EI13069"
+  DTS:DTSID="{ECA37AE8-B9CD-46E9-B547-71E5725DC188}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="execute"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{7EDDBF3F-818F-46C6-98FE-A0C8AFD1A5E6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[rewansolution.database.windows.net.dlithe.rewan]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DF0EF18D-540D-4AA0-9040-74CCF2340048}"
+      DTS:ObjectName="rewansolution.database.windows.net.dlithe.rewan">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=rewansolution.database.windows.net;User ID=rewan;Initial Catalog=dlithe;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAz+v1JvH2gkOn0u3bFJB2BQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAP9AGRwz40gdzFfszoAUNQAAAAAASAAACgAAAAEAAAAIMXKyx1ZcTamaph2DE8AdcYAAAACmYcDEF1lAZyXRCJTw+vGJW2Wp9JCwT7FAAAAO7JlI4GYuxaMMMkqvUBJXBYo7cM</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[rewansolution.database.windows.net.dlithe.rewan 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3EBE9EBD-5FB8-47BB-8B5A-ABFAC4A13B14}"
+      DTS:ObjectName="rewansolution.database.windows.net.dlithe.rewan 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=rewansolution.database.windows.net;User ID=rewan;Initial Catalog=dlithe;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAz+v1JvH2gkOn0u3bFJB2BQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB8wAP5CeY5AJwR1RBQzjEsAAAAAASAAACgAAAAEAAAAMfSjUYkKS7m5zzS5815A3MYAAAAuXDBFYjykHAPrNqy69M5Ee/uz3IEthZoFAAAAPkOSFMOej32ih0R9mzyQlk/L5Tm</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[rewansolution.database.windows.net.dlithe.rewan1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{505F8A68-9AFE-4115-8403-AD8253F6B468}"
+      DTS:ObjectName="rewansolution.database.windows.net.dlithe.rewan1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=rewansolution.database.windows.net;User ID=rewan;Initial Catalog=dlithe;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAz+v1JvH2gkOn0u3bFJB2BQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAE6dteqXaaUIpD7PCb7YmTAAAAAASAAACgAAAAEAAAAChh4XeKIZKwUIGAFqLVP+MYAAAAD9RCcclxlaRFSnHaM4KXa/R5Iad8ZUJPFAAAAGP8dj5kyS41oAr6V1bcg57Ewexk</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task assignment"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C3677736-538E-46E2-9CF6-F14E8F6518A1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task assignment"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3EBE9EBD-5FB8-47BB-8B5A-ABFAC4A13B14}"
+          SQLTask:SqlStatementSource="create table dlithe.dbo.SS_execute&#xA;(&#xA;exe_id int ,&#xA;exe_name varchar(100) ,&#xA;exe_locatn varchar(100),&#xA;exe_sal float&#xA;);&#xA;insert into SS_execute(exe_id,exe_name,exe_locatn,exe_sal) values(1,'varsha','manglalore',12000);&#xA;insert into SS_execute(exe_id,exe_name,exe_locatn,exe_sal) values(2,'sinchana','bangalore',130000);&#xA;insert into SS_execute(exe_id,exe_name,exe_locatn,exe_sal) values(3,'ganesh','koppa',140000);&#xA;insert into SS_execute(exe_id,exe_name,exe_locatn,exe_sal) values(4,'dhanish','belgavi',42000);&#xA;update SS_execute set exe_name='sonu' where exe_sal=12000;&#xA;delete from SS_execute where exe_name='sinchana';&#xA;truncate table hrdepartment;&#xA;drop table levels;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="225.333333333334,42.6666666666667"
+          Id="Package\Execute SQL Task assignment"
+          TopLeft="124.583331476897,30.5614040840145" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
