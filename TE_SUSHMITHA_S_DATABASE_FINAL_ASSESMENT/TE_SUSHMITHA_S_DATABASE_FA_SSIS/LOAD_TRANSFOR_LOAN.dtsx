@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="ELW5209"
   DTS:CreatorName="CORPINDIA\EI13069"
-  DTS:DTSID="{A2553CBE-2167-42C1-8942-D760C1C775ED}"
+  DTS:DTSID="{38239ADE-3BA7-4C57-BA58-AFB44E5EC9A1}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3008.28"
   DTS:LocaleID="1033"
-  DTS:ObjectName="LOAN_DATA"
+  DTS:ObjectName="LOAD_TRANSFOR_LOAN"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{281F1490-B92D-4596-AAAD-D15E27CB9ED9}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{8BFEE544-96DF-4F85-BDF0-B11775150404}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,7 @@
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\SSIS\sources\LoanApprovalSBAnational_Banking.xls;Extended Properties=&quot;Excel 8.0;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\SSIS\sources\LoanApprovalSBAnational_Banking.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -286,7 +286,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAz+v1JvH2gkOn0u3bFJB2BQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC/FkdYB7AWplmVf3WQlLhwAAAAAASAAACgAAAAEAAAAEBNbciEQ1aE2ng8z+yjnTwYAAAAJeSyalnU0ENfv1RIjhPM08L/Bm1Ef1oxFAAAAPKkXIFcF0PD7qI5g0brvlwdZJfX</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAz+v1JvH2gkOn0u3bFJB2BQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADzDuJBGkHRaETGgcwHhfxQAAAAAASAAACgAAAAEAAAAA6ljnUmNlnKPXTjvLrS6DgYAAAAO6sFQKjdfBVbPFOmzUjMSy2CltU50LiCFAAAAEfADHChDZ6g7byxLq3WX+S1QA3F</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
