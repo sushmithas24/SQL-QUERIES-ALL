@@ -1,0 +1,96 @@
+--MODULE 2
+--1,2,3,4
+INSERT INTO TE_FA_LOAN_SSIS SELECT * FROM TE_FA_LOAN;
+SELECT * FROM TE_FA_LOAN_SSIS;
+CREATE TABLE TE_FA_LOAN_SCD (
+	LoanNr_ChkDgt float ,
+	Name nvarchar(255) ,
+	City nvarchar(255) ,
+	State nvarchar(255) ,
+	Zip float ,
+	Bank nvarchar(255) ,
+	BankState nvarchar(255),
+	NAICS float ,
+	ApprovalDate datetime ,
+	ApprovalFY float ,
+	Term float ,
+	NoEmp float,
+	NewExist float ,
+	CreateJob float,
+	RetainedJob float ,
+	FranchiseCode float ,
+	UrbanRural float ,
+	RevLineCr nvarchar(255) ,
+	LowDoc nvarchar(255) ,
+	ChgOffDate datetime,
+	DisbursementDate datetime ,
+	DisbursementGross nvarchar(255) ,
+	BalanceGross nvarchar(255) ,
+	MIS_Status nvarchar(255),
+	ChgOffPrinGr nvarchar(255),
+	GrAppv nvarchar(255) ,
+	SBA_Appv nvarchar(255) 
+);
+--5
+--SCD type 1
+update TE_FA_LOAN_SSIS set ApprovalDate ='2022-10-06',ApprovalFY =2022 where LoanNr_ChkDgt =1000014003 ;
+select * from TE_FA_LOAN_SCD ;
+update TE_FA_LOAN_SSIS set FranchiseCode =2.0,GrAppv =$500000,LowDoc ='Y',MIS_Status ='CHGOFF' where LoanNr_ChkDgt = '1.000054004E9';
+
+--SCD type 2
+ALTER TABLE TE_FA_LOAN_SCD ADD start_date date;
+ALTER TABLE TE_FA_LOAN_SCD ADD end_date date;
+ALTER TABLE TE_FA_LOAN_SCD ADD status varchar(100);
+
+update TE_FA_LOAN_SSIS set CreateJob =1.0,City ='KARNATAKA',MIS_Status ='CHGOFF' where LoanNr_ChkDgt='1.007445002E9' ;
+update TE_FA_LOAN_SSIS set ApprovalFY=2000.0 ,NewExist =3.0,MIS_Status ='CHGOFF' where LoanNr_ChkDgt='1.007424E9' ;
+select * from TE_FA_LOAN_SCD ;
+
+update TE_FA_LOAN_SSIS set CreateJob =2.0,NewExist =7.0,MIS_Status ='CHGOFF' where LoanNr_ChkDgt='1.007384001E9' ;
+update TE_FA_LOAN_SSIS set ApprovalFY=5000.0 ,City='BANGALORE',DisbursementGross =$300000 where LoanNr_ChkDgt='1.007415004E9' ;
+update TE_FA_LOAN_SSIS set NoEmp =5,NewExist =5.0,MIS_Status ='CHGOFF' where LoanNr_ChkDgt='1.007436006E9'
+select * from TE_FA_LOAN_SCD ;
+
+
+--BOTH SCD 
+
+CREATE TABLE TE_FA_TICKET_SCD
+(
+Film_Type	VARCHAR(100),
+film_code	float,
+cinema_code	float,
+total_sales	float,
+tickets_sold	float,
+tickets_out	float,
+show_time	float,
+occu_perc	float,
+ticket_price	float,
+ticket_use	float,
+capacity	float,
+date	float,
+month	float,
+quarter	float,
+day float,
+START_DATE DATE,
+END_DATE DATE
+);
+ALTER TABLE TE_FA_TICKET_SCD ALTER COLUMN END_DATE DATETIME;
+ALTER TABLE TE_FA_TICKET_SCD ALTER COLUMN Film_Type	NVARCHAR(100);
+select * from TE_FA_TICKET_SCD;
+update TE_FA_TICKET set tickets_sold ='55',ticket_use ='51',capacity='260' where cinema_code in(191,210);
+
+
+--6
+--INSURANCE DATASOURCE
+SELECT PREAUTH_AMT as sum_Preauth_amt FROM TE_FA_AGGREGATE;
+ALTER TABLE TE_FA_AGGREGATE ADD avg_Preauth_amt float;
+SELECT * FROM TE_FA_AGGREGATE;
+ALTER TABLE TE_FA_AGGREGATE ADD min_Preauth_amt float;
+ALTER TABLE TE_FA_AGGREGATE ADD max_Preauth_amt float;
+ALTER TABLE TE_FA_AGGREGATE ADD countdistinct_Preauth_amt float;
+ALTER TABLE TE_FA_AGGREGATE ADD count_Preauth_amt float;
+ALTER TABLE TE_FA_AGGREGATE ADD grpby_Preauth_amt float;
+ALTER TABLE TE_FA_AGGREGATE ADD count_PID float;
+ALTER TABLE TE_FA_AGGREGATE ADD avg_age float;
+ALTER TABLE TE_FA_AGGREGATE ADD sum_claim_amt float;
+--------------------------------------------------------------------------------------------------------------------------------
