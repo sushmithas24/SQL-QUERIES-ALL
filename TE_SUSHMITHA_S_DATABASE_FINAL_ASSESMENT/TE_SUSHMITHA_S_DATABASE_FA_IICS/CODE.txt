@@ -1,0 +1,126 @@
+--MODULE 4
+--IICS
+--1,2,3,4
+SELECT * FROM TE_FA_INSURANCE_IICS ;
+--5
+--scd1
+create table TE_FA_INSURANCE_IICS(
+PID	FLOAT,
+AGE	FLOAT,
+GENDER	VARCHAR(100),
+CASTE_NAME VARCHAR(100),
+CATEGORY_CODE VARCHAR(100),
+CATEGORY_NAME VARCHAR(100),
+SURGERY_CODE VARCHAR(100),
+SURGERY VARCHAR(277),
+VILLAGE	VARCHAR(277),
+MANDAL_NAME	VARCHAR(200),
+DISTRICT_NAME	VARCHAR(100),
+PREAUTH_DATE	DATE,
+PREAUTH_AMT	FLOAT,
+CLAIM_DATE	DATE,
+CLAIM_AMOUNT FLOAT,
+HOSP_NAME	VARCHAR(200),
+HOSP_TYPE	VARCHAR(100),
+HOSP_DISTRICT VARCHAR(100),
+SURGERY_DATE	DATE,
+DISCHARGE_DATE	DATE,
+Mortality_Y_N	VARCHAR(100),
+MORTALITY_DATE DATE,
+SRC_REGISTRATION VARCHAR(100),
+SURR_KEY BIGINT
+);
+
+
+select * from TE_FA_INSURANCE_IICS;
+UPDATE TE_FA_INSURANCE SET MANDAL_NAME ='SURATHKAL',VILLAGE='ASHRAYA NAGARA',DISTRICT_NAME ='DK' where PID = 105;
+
+--scd2
+create table TE_FA_INSURANCE_SCD2(
+PID	FLOAT,
+AGE	FLOAT,
+GENDER	VARCHAR(100),
+CASTE_NAME VARCHAR(100),
+CATEGORY_CODE VARCHAR(100),
+CATEGORY_NAME VARCHAR(100),
+SURGERY_CODE VARCHAR(100),
+SURGERY VARCHAR(277),
+VILLAGE	VARCHAR(277),
+MANDAL_NAME	VARCHAR(200),
+DISTRICT_NAME	VARCHAR(100),
+PREAUTH_DATE	DATE,
+PREAUTH_AMT	FLOAT,
+CLAIM_DATE	DATE,
+CLAIM_AMOUNT FLOAT,
+HOSP_NAME	VARCHAR(200),
+HOSP_TYPE	VARCHAR(100),
+HOSP_DISTRICT VARCHAR(100),
+SURGERY_DATE	DATE,
+DISCHARGE_DATE	DATE,
+Mortality_Y_N	VARCHAR(100),
+MORTALITY_DATE DATE,
+SRC_REGISTRATION VARCHAR(100),
+SURR_KEY BIGINT,
+START_DATE DATE,
+END_DATE DATE,
+CHECKSUM_IICS VARCHAR(5000)
+);
+select * from  TE_FA_INSURANCE_SCD2
+
+
+update TE_FA_INSURANCE  set MORTALITY_DATE ='2022-10-07',Mortality_Y_N ='YES' where PID=944 ;
+update TE_FA_INSURANCE  set HOSP_DISTRICT ='KARNATAKA' where PID=939 ;
+
+--scd1
+CREATE TABLE sushmita.dbo.TE_FA_COVID_scd1_iics (
+	DRG_ID float ,
+	DRG_Definition nvarchar(255),
+	Provider_Id float ,
+	Provider_Name nvarchar(255) ,
+	Provider_Street_Address nvarchar(255) ,
+	Provider_City nvarchar(255) ,
+	Provider_State nvarchar(255) ,
+	Provider_Zip_Code float ,
+	Hospital_Referral_Region nvarchar(255) ,
+	Total_Discharges float ,
+	Average_Covered_Charges float ,
+	Average_Medicare_Payments float,
+	Surr_key bigint,
+	CHECKSUM VARCHAR(1000)
+);
+
+select * from  TE_FA_COVID_scd1_iics ;
+update TE_FA_COVID SET Provider_Name ='KMC',Provider_Street_Address ='MANGALORE' WHERE Provider_Id = 30038;
+
+--scd2
+CREATE TABLE sushmita.dbo.TE_FA_COVID_scd2_iics (
+	DRG_ID float ,
+	DRG_Definition nvarchar(255),
+	Provider_Id float ,
+	Provider_Name nvarchar(255) ,
+	Provider_Street_Address nvarchar(255) ,
+	Provider_City nvarchar(255) ,
+	Provider_State nvarchar(255) ,
+	Provider_Zip_Code float ,
+	Hospital_Referral_Region nvarchar(255) ,
+	Total_Discharges float ,
+	Average_Covered_Charges float ,
+	Average_Medicare_Payments float,
+	Surr_key bigint,
+	crc_num VARCHAR(1000),
+	valid_from date,
+	valid_to date,
+	current_flag varchar(100)
+);
+update TE_FA_COVID SET Provider_Name ='VENLOCK',Provider_Street_Address ='MANGALORE',
+Provider_State ='K' WHERE Provider_Id =90006 ;
+select * from  TE_FA_COVID_scd2_iics ;
+
+--6
+
+--AGGREGATE
+select * from TE_FA_AGG_IICS;
+--7
+--REPLICATION
+SELECT * FROM TE_FA_REP_TE_FA_TICKET;
+
