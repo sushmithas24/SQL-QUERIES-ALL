@@ -1,0 +1,160 @@
+--MODULE 1
+--1
+--A HEALTHCARE TABLES
+create table TE_FA_PATIENT
+(
+ptnt_name varchar(50) NOT NULL,
+patient_id int PRIMARY KEY,
+doctor_id int Foreign Key (doctor_id) references TE_FA_DOCTORS(doctor_id),
+city varchar(100),
+file_no varchar(100) Foreign Key (file_no) references TE_FA_PATNT_FILE(fileno)
+);
+create table TE_FA_DOCTORS
+(
+doctor_id int primary key,
+doctor_name varchar(100),
+doctor_age int check(doctor_age>28),
+depart_id int Foreign Key (depart_id) references TE_FA_DEPARTMENT(dept_id)
+);
+create table TE_FA_DEPARTMENT
+(
+dept_id int primary key,
+dept_name varchar(50) UNIQUE
+);
+create table TE_FA_PATNT_FILE
+(
+fileno varchar(100) UNIQUE ,
+entry_date DATE default GETDATE(),
+checkup varchar(100),
+medicine varchar(100),
+dosage_in_mg_perday int
+) ;
+
+--B insert to tables
+INSERT INTO TE_FA_PATNT_FILE VALUES('123A','2019-12-09','ECG','SOTATOL',40),('123B','2019-7-18','URINE','OXYBUTYNIN',1),
+('123C','2022-08-10','SUGAR','GLUCONORM',500),('123D','2021-09-08','THYROID','THYRONORM',100),('123E','2020-05-17','X-RAY','ACETAMINOPHEN',2),
+('123F','2022-12-09','BLOOD','CYANOCOBALAMIN',300),('123G','2018-12-01','BLOOD PRESSURE','FELODIPINE',10),
+('123H','2017-10-19','EYE TEST','EYEMIST',10),('123I','2020-11-20','KIDNEY TEST','KERENDIA',20),('123J','2022-05-30','LIVER TEST','ALPHA-LIV',100);
+
+INSERT INTO TE_FA_PATNT_FILE(fileno ,checkup,medicine,dosage_in_mg_perday) VALUES('123K','MRI','ACETOAMINE',200),
+('123L','ECG','MIFEGEST',500),('123M','KIDNEY TEST','KERENDIA',20),('123N','EYE TEST','EYECARETINE',10),
+('123O','URINE','OXYBUTYNIN',1);
+
+
+INSERT INTO TE_FA_PATNT_FILE VALUES('123P','2020-11-09','ECG','SOTATOL',40),('123Q','2019-02-18','URINE','OXYBUTYNIN',1),
+('123R','2022-08-11','SUGAR',NULL,NULL),('123S','2021-08-08','THYROID','THYRONORM',150),('123T','2021-08-17','X-RAY','ACETAMINOPHEN',2),
+('123U','2022-11-07','BLOOD','CYANOCOBALAMIN',200),('123V','2018-07-21','BLOOD PRESSURE','CARDEOVEL',20),
+('123W','2017-10-19','EYE TEST','EYEMIST',30),('123X','2020-11-20','KIDNEY TEST','TIG-10',100),('123Y','2022-05-30','LIVER TEST','ALPHA-LIV',NULL),
+('123Z','2021-11-07','BLOOD','GYNERCINE',100),('123AB','2016-11-01','BLOOD PRESSURE','FELODIPINE',100),('123AC','2021-06-20','LIVER TEST','HEPTATINE-G',200),
+('123AD','2020-08-03','BREATHING','RESPOCROTICINE',200);
+
+
+INSERT INTO TE_FA_PATNT_FILE(fileno ,checkup,medicine,dosage_in_mg_perday) VALUES('123AE','MRI','ACETOAMINE',1),
+('123AF','ECG','BORONIT',500),('123AG','KIDNEY TEST','KERENDIA',20),('123AH','EYE TEST','EYECARETINE',NULL),
+('123AI','URINE','OXYBUTYNIN',1),('123AJ',NULL,NULL,NULL),('123AK','BLOOD','WHITECELLOMINE',300);
+
+INSERT INTO TE_FA_PATNT_FILE VALUES('123AL','2016-11-09','ECG','SOTATOL',50),('123AM','2019-08-10','URINE','OXYBUTYNIN',10),
+('123AN','2021-11-10','SUGAR','GLUCONORM',200),('123AO','2021-04-02','THYROID','THYRONORM',200),('123AP','2021-05-17','X-RAY','ACTOMINE',1),
+('123AQ','2020-11-08','BLOOD','CYANOCOBALAMIN',300),('123AR','2019-12-04','BLOOD PRESSURE','FELODIPINE',50),
+('123AS','2018-10-19','EYE TEST','EYEISTER',NULL),('123AT','2022-10-21','KIDNEY TEST','KERENDIA',50),('123AU','2021-04-17','LIVER TEST','ALPHA-LIV',100);
+
+INSERT INTO TE_FA_PATNT_FILE(fileno ,checkup,medicine,dosage_in_mg_perday) VALUES('123AV','MRI','ACETOAMINE',15),
+('123AW','ECG','SANTAL-A',90),('123AX','KIDNEY TEST','ASTONE-B',100),('123AY','EYE TEST','EYECARETINE',20),
+('123AZ','URINE','OXYBUTYNIN',1),('123ABA','BLOOD','WHITECELLOMINE',200);
+select * from TE_FA_PATNT_FILE tfpf ;
+------------------------------------------------------------------------------------------------------------------------
+INSERT INTO TE_FA_DEPARTMENT VALUES(1,'DERMATOLOGIST'),(2,'PEDIATICIAN'),(3,'CARDIOLOGIST'),(4,'OPTHALMOLOGIST'),(5,'GASTROENTEROLGIST'),
+(6,'NEPHROLOGIST'),(7,'OTOLARYNGOLOGISTS');
+---------------------------------------------------------------------------------------------------------------------------
+INSERT INTO TE_FA_DOCTORS VALUES(111,'OMKAR',30,3),(222,'NANDINI',32,1),(333,'CHARAN',29,6),(444,'LORA',30,7),(555,'JINNA',35,4),
+(666,'SMRUTHI',37,2),(777,'GAGAN',32,5),(888,'JUNE',31,6),(999,'BRITNY',35,3),(501,'MURULI',39,2),(502,'HARINI',41,6),
+(503,'FARUK',35,1),(504,'VARSHA',45,6),(505,'YASH',39,7),(506,'DHANUSH',33,2);
+-----------------------------------------------------------------------------------------------------------------------------
+INSERT INTO TE_FA_PATIENT VALUES('SUSHMITHA',100,999,'MANGALORE','123A'),('SUPRAHA',101,222,'MANGALORE','123B'),('MEGHANA',102,333,'UDUPI','123C'),
+('ANWITHA',103,444,'SURATHKAL','123D'),('JAYANTH',104,111,'BHRAMHAVARA','123E'),('PAVAN',105,444,'KUNDAPURA','123F'),
+('NEHA',106,555,'BANGALORE','123G'),('VRISHABH',107,777,'COORG','123H'),('HARSHITHA',108,888,'YELAHANKA','123I'),
+('JHANVI',109,666,'BANGALORE','123J'),('ROHAN',110,222,'HARYANA','123K'),('JOHN',111,111,'HASSAN','123L'),
+('AMIT',112,501,'BELGAVI','123M'),('ANJALI',113,555,'BELGAUM','123N'),('AKASH',114,506,'GULBARGA','123O'),('SANVI',115,503,'KULAI','123P'),
+('MAYURI',116,333,'KOLAR','123Q'),('SANNIDI',117,999,'KAUP','123R'),('ARUN',118,666,'TAMILNADU','123T'),('KIRAN',119,501,'MALNAD','123U'),
+('SHRAVAN',120,111,'KARAKALA','123V'),('DEVA',121,444,'KRPURAM','123W'),('TANU',122,333,'CHIKAMANAGLURU','123X'),
+('SINCHANA',123,504,'MYSORE','123Y'),('SPOORTHI',124,506,'HAMPI','123S'),('SPANDANA',125,222,'HASSAN','123Z'),
+('RACHANA',126,777,'DEVANAHALLI','123AB'),('AJAY',127,502,'AGUMBE','123AC'),('ANJANA',128,333,'CHITRADURGA','123AD'),
+('BHARATH',129,999,'HOSUR','123AE'),('BRAYAN',130,444,'SIRSI','123AF'),('GANESH',131,555,'HAVERI','123AG'),('HINA',132,501,'KARWAR','123AH'),
+('JONNY',133,111,'TUMKURU','123AI'),('KALYAN',134,888,'BANGALORE','123AJ'),
+('APARNA',136,502,'NAGSANDRA','123AK'),('MANISH',137,504,'BANSHANKRI','123AL'),('MANASI',138,666,'UP','123AM'),
+('NISHMA',139,503,'SIRSI','123AN'),('NANDAN',140,555,'NANJANGUD','123AO'),('ANAND',141,999,'DAVANGERE','123AP'),
+('SONITH',142,333,'MANDYA','123AQ'),('PRATHIKSHA',143,111,NULL,'123AR'),('PRAVEEN',144,502,'MANGALORE','123AS'),
+('POORNESH',145,501,'JALAHALLI','123AT'),('SANJANA',146,666,'KGF','123AU'),('SHREYA',147,504,'GOA','123AV'),('ROHAN',148,503,'DHARWAD','123AW'),
+('SAMMY',149,222,'GHANDINAGARA','123AX'),('VISMITHA',150,505,'DEVANAHALLI','123AY'),('VICKY',151,504,'KALASIPALYA','123AZ'),
+('ANVITHA',152,502,'UDUPI','123ABA');
+
+SELECT * FROM TE_FA_DEPARTMENT tfd  ;
+-----------------------------------------------------------------------------------------------------------------------------
+--C JOIN THE TABLES
+select * from TE_FA_PATIENT  as PAT inner join  TE_FA_PATNT_FILE  as FILES
+on PAT.file_no=FILES.fileno inner join TE_FA_DOCTORS  as DOC
+on PAT.doctor_id=DOC.doctor_id inner join TE_FA_DEPARTMENT AS DEPT 
+ON DOC.depart_id =DEPT.dept_id ;
+
+INSERT INTO TE_FA_PATIENT VALUES('Sushma',153,NULL,'PATNA',NULL);
+--FULL JOIN
+select * from TE_FA_PATIENT  as PAT full join  TE_FA_PATNT_FILE  as FILES
+on PAT.file_no=FILES.fileno full  join TE_FA_DOCTORS  as DOC
+on PAT.doctor_id=DOC.doctor_id  full join TE_FA_DEPARTMENT AS DEPT 
+ON DOC.depart_id =DEPT.dept_id ;
+--LEFT JOIN
+select * from TE_FA_PATIENT  as PAT left join  TE_FA_PATNT_FILE  as FILES
+on PAT.file_no=FILES.fileno left join TE_FA_DOCTORS  as DOC
+on PAT.doctor_id=DOC.doctor_id left join TE_FA_DEPARTMENT AS DEPT 
+ON DOC.depart_id =DEPT.dept_id ;
+--RIGHT JOIN
+select * from TE_FA_PATIENT  as PAT right join  TE_FA_PATNT_FILE  as FILES
+on PAT.file_no=FILES.fileno right join TE_FA_DOCTORS  as DOC
+on PAT.doctor_id=DOC.doctor_id right join TE_FA_DEPARTMENT AS DEPT 
+ON DOC.depart_id =DEPT.dept_id ;
+--INNER JOIN
+select * from TE_FA_PATIENT  as PAT inner join  TE_FA_PATNT_FILE  as FILES
+on PAT.file_no=FILES.fileno inner join TE_FA_DOCTORS  as DOC
+on PAT.doctor_id=DOC.doctor_id inner join TE_FA_DEPARTMENT AS DEPT 
+ON DOC.depart_id =DEPT.dept_id ;
+
+-----------------------------------------------------------------------------------------------------------------------
+--D CREATE VIEWS
+
+create view TE_FA_PATNTVIEW
+as 
+select * from TE_FA_PATIENT tfp ;
+select * from TE_FA_PATNTVIEW;
+
+create view TE_FA_PTNTFILEVIEW
+as 
+select * from TE_FA_PATNT_FILE  ;
+select * from TE_FA_PTNTFILEVIEW;
+
+create view TE_FA_DRVIEW
+as 
+select * from TE_FA_DOCTORS  ;
+select * from TE_FA_DRVIEW ;
+
+
+create view TE_FA_DEPVIEW
+as 
+select * from TE_FA_DEPARTMENT  ;
+select * from TE_FA_DEPVIEW ;
+
+
+--update view 
+update  TE_FA_PATNTVIEW set ptnt_name='vinay' where patient_id=133;
+select * from TE_FA_PATIENT tfp  ;
+
+update  TE_FA_PTNTFILEVIEW set entry_date='2021-10-04' where fileno='123AF';
+select * from TE_FA_PTNTFILEVIEW ;
+
+update  TE_FA_DRVIEW set depart_id=5 where doctor_id=502;
+select * from TE_FA_DRVIEW ;
+
+--alter view
+alter view  TE_FA_PTNTFILEVIEW 
+as select medicine,avg(dosage_in_mg_perday) as AVG_DOSAGE_DATA from TE_FA_PATNT_FILE  GROUP BY medicine  ;
+select * from TE_FA_PTNTFILEVIEW ;
+-------------------------------------------------------------------------------------------------------------------------------
