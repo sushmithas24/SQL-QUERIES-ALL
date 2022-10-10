@@ -1,0 +1,182 @@
+--Module 1
+--2 DDL
+--CREATE TABLE
+create table TE_FA_INSURANCE(
+PID	FLOAT,
+AGE	FLOAT,
+GENDER	VARCHAR(100),
+CASTE_NAME VARCHAR(100),
+CATEGORY_CODE VARCHAR(100),
+CATEGORY_NAME VARCHAR(100),
+SURGERY_CODE VARCHAR(100),
+SURGERY VARCHAR(277),
+VILLAGE	VARCHAR(277),
+MANDAL_NAME	VARCHAR(200),
+DISTRICT_NAME	VARCHAR(100),
+PREAUTH_DATE	DATE,
+PREAUTH_AMT	FLOAT,
+CLAIM_DATE	DATE,
+CLAIM_AMOUNT FLOAT,
+HOSP_NAME	VARCHAR(200),
+HOSP_TYPE	VARCHAR(100),
+HOSP_DISTRICT VARCHAR(100),
+SURGERY_DATE	DATE,
+DISCHARGE_DATE	DATE,
+Mortality_Y_N	VARCHAR(100),
+MORTALITY_DATE DATE,
+SRC_REGISTRATION VARCHAR(100)
+);
+SELECT * FROM TE_FA_INSURANCE ;
+CREATE TABLE TE_FA_TICKET
+(
+Film_Type	VARCHAR(100),
+film_code	float,
+cinema_code	float,
+total_sales	float,
+tickets_sold	float,
+tickets_out	float,
+show_time	float,
+occu_perc	float,
+ticket_price	float,
+ticket_use	float,
+capacity	float,
+date	float,
+month	float,
+quarter	float,
+day float
+);
+--ALTER 
+ALTER TABLE TE_FA_INSURANCE ADD Mobile_no varchar(100);
+select * from TE_FA_INSURANCE;
+
+ALTER TABLE TE_FA_INSURANCE DROP COLUMN Mobile_no;
+
+ALTER TABLE TE_FA_INSURANCE ALTER COLUMN AGE INT;
+
+--DROP 
+DROP TABLE tablename;
+
+--TRUNCATE 
+TRUNCATE TABLE tablename;
+
+--DML
+--INSERT
+
+INSERT into TE_FA_INSURANCE VALUES(1003,33,'MALE','LINGAYATH','M6','NEPHROLOGY','M6.9',	'Kidney stone analysis','andrahalli',null,'kolar',
+'09/10/2022 18:30','12500','10/10/2022 20:25',56389,'Rims Govt. General Hospital, Kolar','G','Kolar','8/15/2022 0:00','10/18/22 0:00','NO',null,'D');
+select * from TE_FA_INSURANCE;
+
+--UPDATE 
+UPDATE TE_FA_INSURANCE SET CATEGORY_CODE  = '3B' where PID=1003;
+
+UPDATE TE_FA_INSURANCE SET MANDAL_NAME ='VEMGAL',PREAUTH_AMT =33000 where PID=1003;
+
+--DELETE 
+delete FROM TE_FA_INSURANCE WHERE PID=946;
+DELETE TOP(35000) FROM TE_FA_TICKET;
+
+--DQL
+select * from TE_FA_TICKET;
+SELECT * FROM  TE_FA_INSURANCE WHERE GENDER ='MALE';
+SELECT * FROM  TE_FA_INSURANCE WHERE HOSP_NAME='Rims Govt. General Hospital, Srikakulam';
+SELECT *FROM  TE_FA_INSURANCE WHERE SURGERY_DATE >'2015-01-01' ;
+SELECT * FROM TE_FA_INSURANCE WHERE SRC_REGISTRATION !='D';
+SELECT * FROM TE_FA_INSURANCE WHERE HOSP_DISTRICT ='Guntur' OR HOSP_NAME ='KIMS SAI SESHDRI HOSPITAL';
+SELECT * FROM TE_FA_INSURANCE WHERE CATEGORY_NAME ='CARDIOLOGY' AND SURGERY ='Medical Management of  Refractory Cardiac Failure';
+SELECT * FROM TE_FA_INSURANCE WHERE CLAIM_AMOUNT  BETWEEN 10000 AND 20000;
+SELECT * FROM TE_FA_INSURANCE WHERE HOSP_DISTRICT  LIKE '%a';
+SELECT * FROM TE_FA_INSURANCE WHERE SRC_REGISTRATION  NOT LIKE 'd%';
+SELECT * FROM TE_FA_INSURANCE WHERE DISCHARGE_DATE  IS NULL;
+SELECT * FROM TE_FA_INSURANCE WHERE MORTALITY_DATE  IS NOT NULL;
+SELECT * FROM TE_FA_INSURANCE WHERE SURGERY_CODE  IN ('M6.4','S5.1.3');
+
+
+--String functions
+SELECT TOP 9 * FROM TE_FA_INSURANCE ;
+SELECT UPPER(SURGERY) FROM  TE_FA_INSURANCE ;
+SELECT LOWER(CATEGORY_NAME) FROM TE_FA_INSURANCE;
+SELECT TRIM(HOSP_NAME) FROM TE_FA_INSURANCE ;
+SELECT LTRIM(SURGERY) FROM TE_FA_INSURANCE ;
+SELECT RTRIM(HOSP_TYPE),RTRIM(HOSP_DISTRICT) FROM TE_FA_INSURANCE ;
+SELECT LEN(SURGERY) AS LEN FROM TE_FA_INSURANCE ;
+SELECT REPLACE(REPLACE(SURGERY_CODE,'M','N'),'S','A') FROM TE_FA_INSURANCE ;
+SELECT CONCAT(CATEGORY_NAME ,'_',CATEGORY_CODE) AS CATEGORY  FROM TE_FA_INSURANCE ;
+SELECT CHARINDEX('SURGERY',CATEGORY_NAME) AS INDEX_SURGERY FROM TE_FA_INSURANCE ;
+SELECT SUBSTRING(SURGERY,9,17), PID  FROM TE_FA_INSURANCE;
+
+SELECT TRIM(SUBSTRING(SURGERY,CHARINDEX(' ',SURGERY),LEN(SURGERY))), PID  FROM TE_FA_INSURANCE;
+
+--USING TICKET TABLE
+--CASE STATMENT
+SELECT CASE WHEN month=7 THEN 'TICKET SOLD WAS AVERAGE' 
+WHEN month=6 THEN 'TICKET SOLD WAS AT PEAK' 
+ELSE 'TICKET SOLD WAS MINIMUM' 
+END AS REVIEW FROM TE_FA_TICKET;
+
+--AGGREGATE FUNCTIONS
+SELECT SUM(ticket_price) as sum_of_collection FROM TE_FA_TICKET ;
+SELECT MIN(tickets_sold) as minticketsold, MAX(tickets_sold) as maxticketsold, AVG(tickets_sold) as avrg_ticketsold FROM TE_FA_TICKET ;
+
+SELECT SUM(tickets_sold) as count_sold, show_time  FROM TE_FA_TICKET GROUP BY show_time  ;
+
+SELECT COUNT(1) as no_of_capcity_repeated ,capacity  from TE_FA_TICKET group by capacity  having count(1)>10;
+
+SELECT SUM(occu_perc) as occ_percentage,month FROM TE_FA_TICKET GROUP BY month having sum(occu_perc)>100 ORDER BY month DESC;
+
+
+--RANK FUNCTIONS
+--dense rank 
+SELECT * FROM (
+SELECT DENSE_RANK() OVER (PARTITION BY  show_time ORDER BY total_sales ASC) AS
+DRNK,total_sales,show_time
+FROM TE_FA_TICKET
+)X
+
+SELECT * FROM (
+SELECT DENSE_RANK() OVER (PARTITION BY  ticket_use ORDER BY capacity DESC) AS
+DRNK,ticket_use,capacity
+FROM TE_FA_TICKET
+WHERE capacity>100
+)X
+
+--rank
+SELECT * FROM (
+SELECT RANK() OVER (PARTITION BY  capacity ORDER BY  ticket_use DESC) AS
+RNK,ticket_use,capacity
+FROM TE_FA_TICKET
+WHERE capacity>1000
+)X
+
+--row number
+SELECT ROW_NUMBER () OVER (  ORDER BY  cinema_code  ASC) AS
+Row_NO,cinema_code ,film_code ,Film_Type  
+FROM TE_FA_TICKET ;
+
+--reference integrity
+--- On delete cascade on update cascade
+
+alter table TE_FA_PATIENT drop constraint  FK__TE_FA_PAT__file___2EDAF651;
+alter table TE_FA_PATIENT  add constraint FK__TE_FA_PAT__file foreign key (file_no)  
+references TE_FA_PATNT_FILE(fileno) on delete cascade on update cascade;
+delete from TE_FA_PATNT_FILE  where fileno='123AC';
+Select * from TE_FA_PATIENT tfp ;
+Select * from TE_FA_PATNT_FILE tfpf ;
+UPDATE  TE_FA_PATNT_FILE SET fileno='123AA' where fileno='123A';
+Select * from TE_FA_PATIENT tfp ;
+Select * from TE_FA_PATNT_FILE tfpf ;
+
+--on delete update set null
+alter table TE_FA_PATIENT drop constraint  FK__TE_FA_PAT__file;
+alter table TE_FA_PATIENT  add constraint FK__TE_FA_PAT__file foreign key (file_no)  
+references TE_FA_PATNT_FILE(fileno) on delete set null on update set null;
+delete from TE_FA_PATNT_FILE  where fileno='123AD';
+Select * from TE_FA_PATIENT tfp ;
+Select * from TE_FA_PATNT_FILE tfpf ;
+UPDATE  TE_FA_PATNT_FILE SET fileno='123A' where fileno='123AA';
+Select * from TE_FA_PATIENT tfp ;
+Select * from TE_FA_PATNT_FILE tfpf ;
+
+SELECT * FROM TE_FA_LOAN;
+
+select Term ,NoEmp ,DisbursementGross,GrAppv ,SBA_Appv  from TE_FA_LOAN tfl where (((NoEmp/Term) * 100) > 100 );
+----------------------------------------------------------------------------------------------------------------------------------
